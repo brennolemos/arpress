@@ -8,6 +8,11 @@ const articlesController = require("./articles/ArticlesController");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+ })
 
 connection
    .authenticate()
@@ -21,7 +26,7 @@ app.use("/", categoriesController);
 app.use("/", articlesController);
 
 app.get("/", (req, res) => {
-   res.send("Bem vindo!");
+   res.send({message: "Bem vindo!"});
 });
 
 app.listen(8080, () => {
