@@ -6,6 +6,9 @@ const connection = require("./database/database");
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
 
+const Article = require("./articles/Article");
+const Category = require("./categories/Category");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
