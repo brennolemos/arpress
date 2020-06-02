@@ -7,7 +7,10 @@ const CategoriesList = () => {
   useEffect(() => {
     fetch("http://localhost:8080/admin/categories")
       .then((res) => res.json())
-      .then((response) => setCategories(response));
+      .then((response) => {
+        setCategories(response);
+        console.log("renderizou");
+      });
   }, []);
 
   return (
@@ -35,9 +38,19 @@ const CategoriesList = () => {
                     <td>{category.id}</td>
                     <td>{category.title}</td>
                     <td>{category.slug}</td>
-                    <td className="text-center">
-                      <button className="btn btn-warning btn-sm mr-2">Editar</button>
-                      <button className="btn btn-danger btn-sm">Deletar</button>
+                    <td className="d-flex justify-content-center">
+                      <button className="btn btn-warning btn-sm mr-2">
+                        Editar
+                      </button>
+                      <form
+                        action="http://localhost:8080/categories/delete"
+                        method="post"
+                      >
+                        <input type="hidden" name="id" value={category.id} />
+                        <button className="btn btn-danger btn-sm">
+                          Deletar
+                        </button>
+                      </form>
                     </td>
                   </tr>
                 ))
