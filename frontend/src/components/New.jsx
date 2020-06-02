@@ -8,7 +8,7 @@ const NewForm = () => (
           <h2>Cadastro de Categoria</h2>
         </div>
         <div className="card-body">
-          <form action="">
+          <form action="http://localhost:8080/categories/save" method="post">
             <div className="form-group">
               <input
                 type="text"
