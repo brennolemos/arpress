@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
-import NewForm from "./components/New";
+import CategoryForm from "./components/CategoryForm";
+import CategoriesList from "./components/CategoriesList";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
@@ -22,7 +23,8 @@ const App = () => {
             <Route path="/" exact>
               <p>{message && message.message}</p>
             </Route>
-            <Route path="/admin/categories/new" component={NewForm} />
+            <Route path="/admin/categories" exact component={CategoriesList} />
+            <Route path="/admin/categories/new" component={CategoryForm} />
           </Switch>
         </div>
       </div>

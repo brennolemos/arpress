@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewForm = () => (
+const CategoryForm = () => (
   <div className="row my-3">
     <div className="col-md-12">
       <div className="card">
@@ -25,4 +25,4 @@ const NewForm = () => (
   </div>
 );
 
-export default NewForm;
+export default CategoryForm;

@@ -17,5 +17,11 @@ router.post("/categories/save", (req, res) => {
    }
 });
 
+router.get("/admin/categories", (req, res) => {
+   Category.findAll().then(categories => {
+      res.send(categories)
+   })
+})
+
 
 module.exports = router;
