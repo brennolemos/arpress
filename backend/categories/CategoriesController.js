@@ -17,6 +17,25 @@ router.post("/categories/save", (req, res) => {
    }
 });
 
+router.post("/categories/delete", (req, res) => {
+   const id = req.body.id;
+   if (id != undefined) {
+      if (!isNaN(id)) {
+         Category.destroy({
+            where: {
+               id
+            }
+         }).then(() => {
+            res.send({ message: "Categoria deletada com sucesso!" });
+         })
+      } else {
+         res.send({ message: "Digite um valor válido!" });
+      }
+   } else {
+      res.send({ message: "Digite um valor válido!" });
+   }
+});
+
 router.get("/admin/categories", (req, res) => {
    Category.findAll().then(categories => {
       res.send(categories)

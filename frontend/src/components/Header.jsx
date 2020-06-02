@@ -1,10 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <nav className="navbar navbar-dark bg-primary">
-    <a href="/" className="navbar-brand">
+    <Link to="/" className="navbar-brand">
       <h3>ArPress</h3>
-    </a>
+    </Link>
+    <ul className="navbar-nav">
+      <li className="nav-item">
+        <Link to="/admin/categories" className="nav-link">
+          Categorias
+        </Link>
+      </li>
+    </ul>
   </nav>
 );
 
