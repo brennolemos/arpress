@@ -13,6 +13,13 @@ const CategoriesList = () => {
       });
   }, []);
 
+  function confirmDelete(event) {
+    event.preventDefault();
+    if (window.confirm("Deseja realmente deletar esta categoria?")) {
+      event.target.submit();
+    }
+  }
+
   return (
     <div className="row my-3">
       <div className="col-md-12">
@@ -45,6 +52,7 @@ const CategoriesList = () => {
                       <form
                         action="http://localhost:8080/categories/delete"
                         method="post"
+                        onSubmit={confirmDelete}
                       >
                         <input type="hidden" name="id" value={category.id} />
                         <button className="btn btn-danger btn-sm">
