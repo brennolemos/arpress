@@ -44,6 +44,11 @@ router.get("/admin/categories", (req, res) => {
 
 router.get("/admin/categories/edit/:id", (req, res) => {
    const id = req.params.id;
+   
+   if (isNaN(id)) {
+      res.send({ message: "Nenhuma categoria encontrada." });
+   }
+   
    Category.findByPk(id).then(category => {
       if (category != undefined) {
          res.send(category);

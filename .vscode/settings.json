@@ -1,0 +1,11 @@
+{
+   "ngin.databases": [
+      {
+         "name": "cafaz",
+         "serverAddress": "http://www.cafazonline.org.br",
+         "userName": "breno",
+         "main": true,
+         "enabled": false
+      }
+   ]
+}

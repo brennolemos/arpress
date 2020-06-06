@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import CategoryForm from "./components/CategoryForm";
 import CategoriesList from "./components/CategoriesList";
+import EditForm from "./components/EditForm";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
@@ -25,6 +26,7 @@ const App = () => {
             </Route>
             <Route path="/admin/categories" exact component={CategoriesList} />
             <Route path="/admin/categories/new" component={CategoryForm} />
+            <Route path="/admin/categories/edit/:id" component={EditForm} />
           </Switch>
         </div>
       </div>
