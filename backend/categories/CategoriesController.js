@@ -44,11 +44,11 @@ router.get("/admin/categories", (req, res) => {
 
 router.get("/admin/categories/edit/:id", (req, res) => {
    const id = req.params.id;
-   
+
    if (isNaN(id)) {
       res.send({ message: "Nenhuma categoria encontrada." });
    }
-   
+
    Category.findByPk(id).then(category => {
       if (category != undefined) {
          res.send(category);
@@ -57,6 +57,18 @@ router.get("/admin/categories/edit/:id", (req, res) => {
       }
    }).catch(err => {
       res.send({ message: err });
+   });
+});
+
+router.post("/categories/update", (req, res) => {
+   const id = req.body.id;
+   const title = req.body.title;
+   Category.update({ title, slug: slugify(title) }, {
+      where: {
+         id
+      }
+   }).then(() => {
+      res.send("Categoria atualizada com sucesso!")
    });
 });
 
