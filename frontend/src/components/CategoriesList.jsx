@@ -46,9 +46,9 @@ const CategoriesList = () => {
                     <td>{category.title}</td>
                     <td>{category.slug}</td>
                     <td className="d-flex justify-content-center">
-                      <button className="btn btn-warning btn-sm mr-2">
+                      <Link to={`/admin/categories/edit/${category.id}`} className="btn btn-warning btn-sm mr-2">
                         Editar
-                      </button>
+                      </Link>
                       <form
                         action="http://localhost:8080/categories/delete"
                         method="post"
