@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 
 const ArticleForm = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/admin/articles/new")
+      .then((res) => res.json())
+      .then((response) => setCategories(response));
+  });
   const handleEditor = (content, editor) => {
     console.log(content);
   };
@@ -24,14 +31,6 @@ const ArticleForm = () => {
                 />
               </div>
               <div className="form-group">
-                {/* <textarea
-                name="body"
-                id="body"
-                cols="30"
-                rows="5"
-                className="form-control"
-                placeholder="Escreva o artigo"
-              ></textarea> */}
                 <Editor
                   className="form-control"
                   textareaName="body"
@@ -53,6 +52,18 @@ const ArticleForm = () => {
                   }}
                   onEditorChange={handleEditor}
                 />
+              </div>
+              <div className="form-group">
+                <label htmlFor="category">Categoria</label>
+                <select
+                  name="category"
+                  id="category"
+                  className="form-control"
+                >
+                  {categories && categories.map(category => (
+                    <option key={category.id} value={category.id}>{category.title}</option>
+                  ))}
+                </select>
               </div>
               <button className="btn btn-success">Cadastrar</button>
             </form>
