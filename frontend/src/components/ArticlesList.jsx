@@ -38,7 +38,7 @@ const ArticlesList = () => {
                     <td>{article.id}</td>
                     <td>{article.title}</td>
                     <td>{article.slug}</td>
-                    <td>{article.categoryId}</td>
+                    <td>{article.category.title}</td>
                     <td className="d-flex justify-content-center">
                       <Link
                         to={`/admin/articles/edit/${article.id}`}
