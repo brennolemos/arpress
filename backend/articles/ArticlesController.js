@@ -4,8 +4,10 @@ const Category = require("../categories/Category");
 const Article = require("./Article");
 const slugify = require("slugify");
 
-router.get("/articles", (req, res) => {
-   res.send("Rota de Artigos");
+router.get("/admin/articles", (req, res) => {
+   Article.findAll().then(articles => {
+      res.send(articles);
+   })
 });
 
 router.get("/admin/articles/new", (req, res) => {
