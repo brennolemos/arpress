@@ -21,7 +21,7 @@ const ArticleForm = () => {
             <h2>Novo Artigo</h2>
           </div>
           <div className="card-body">
-            <form action="http://localhost:8080/categories/save" method="post">
+            <form action="http://localhost:8080/articles/save" method="post">
               <div className="form-group">
                 <input
                   type="text"
