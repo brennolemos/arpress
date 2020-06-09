@@ -33,10 +33,12 @@ const ArticleForm = () => {
                 placeholder="Escreva o artigo"
               ></textarea> */}
                 <Editor
-                className="form-control"
+                  className="form-control"
                   textareaName="body"
                   initialValue="<p>Escreva o artigo</p>"
                   init={{
+                    language: "pt_BR",
+                    language_url: "/langs/pt_BR.js",
                     height: 300,
                     // menubar: false,
                     plugins: [
