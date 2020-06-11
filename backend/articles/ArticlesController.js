@@ -18,6 +18,25 @@ router.get("/admin/articles/new", (req, res) => {
    })
 });
 
+router.post("/articles/delete", (req, res) => {
+   const id = req.body.id;
+   if (id != undefined) {
+      if (!isNaN(id)) {
+         Article.destroy({
+            where: {
+               id
+            }
+         }).then(() => {
+            res.send({ message: "Artigo deletada com sucesso!" });
+         })
+      } else {
+         res.send({ message: "Digite um valor válido!" });
+      }
+   } else {
+      res.send({ message: "Digite um valor válido!" });
+   }
+});
+
 router.post("/articles/save", (req, res) => {
    const title = req.body.title;
    const body = req.body.body;

@@ -12,6 +12,14 @@ const ArticlesList = () => {
         console.log("renderizou");
       });
   }, []);
+
+  function confirmDelete(event) {
+    event.preventDefault();
+    if (window.confirm("Deseja realmente deletar este artigo?")) {
+      event.target.submit();
+    }
+  }
+
   return (
     <div className="row my-3">
       <div className="col-md-12">
@@ -49,7 +57,7 @@ const ArticlesList = () => {
                       <form
                         action="http://localhost:8080/articles/delete"
                         method="post"
-                        // onSubmit={confirmDelete}
+                        onSubmit={confirmDelete}
                       >
                         <input type="hidden" name="id" value={article.id} />
                         <button className="btn btn-danger btn-sm">
