@@ -15,7 +15,7 @@ app.use((req, res, next) => {
    res.header("Access-Control-Allow-Origin", "*");
    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
    next();
- })
+})
 
 connection
    .authenticate()
@@ -33,6 +33,17 @@ app.get("/", (req, res) => {
       res.send(articles)
    })
 });
+
+app.get("/:slug", (req, res) => {
+   const slug = req.params.slug;
+   Article.findOne({
+      where: {
+         slug
+      }
+   }).then(article => {
+      res.send(article)
+   })
+})
 
 app.listen(8080, () => {
    console.log("Servidor rodando!");
