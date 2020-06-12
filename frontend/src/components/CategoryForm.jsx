@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const CategoryForm = () => {
   const initialForm = {
@@ -16,7 +16,6 @@ const CategoryForm = () => {
 
   function handleForm(event) {
     event.preventDefault();
-    const data = new FormData(event.target);
     fetch("http://localhost:8080/categories/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

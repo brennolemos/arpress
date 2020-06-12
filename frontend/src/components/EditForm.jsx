@@ -8,7 +8,7 @@ const EditForm = (props) => {
     fetch(`http://localhost:8080/admin/categories/edit/${id}`)
       .then((data) => data.json())
       .then((res) => setResponse(res));
-  }, []);
+  });
 
   function handleChange(event) {
     setResponse({

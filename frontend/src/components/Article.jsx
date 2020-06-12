@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import ReactHtmlParser from "react-html-parser";
 
 const Article = (props) => {
   const slug = props.match.params.slug;
@@ -16,7 +16,9 @@ const Article = (props) => {
       <div className="card-header">
         <h2>{article && article.title}</h2>
       </div>
-      <div className="card-body">{article && article.body}</div>
+      <div className="card-body">
+        {article && ReactHtmlParser(article.body)}
+      </div>
     </div>
   );
 };
