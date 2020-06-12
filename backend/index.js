@@ -29,7 +29,9 @@ app.use("/", categoriesController);
 app.use("/", articlesController);
 
 app.get("/", (req, res) => {
-   res.send({message: "Bem vindo!"});
+   Article.findAll().then(articles => {
+      res.send(articles)
+   })
 });
 
 app.listen(8080, () => {

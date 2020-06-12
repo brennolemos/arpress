@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
+import Home from "./components/Home";
 import ArticleForm from "./components/ArticleForm";
 import ArticlesList from "./components/ArticlesList";
 import CategoryForm from "./components/CategoryForm";
@@ -10,22 +11,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
 const App = () => {
-  const [message, setMessage] = useState(null);
-  useEffect(() => {
-    fetch("http://localhost:8080")
-      .then((res) => res.json())
-      .then((response) => setMessage(response));
-  }, []);
-
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <div className="container">
           <Switch>
-            <Route path="/" exact>
-              <p>{message && message.message}</p>
-            </Route>
+            <Route path="/" exact component={Home} />
             <Route path="/admin/articles/new" component={ArticleForm} />
             <Route path="/admin/articles" exact component={ArticlesList} />
             <Route path="/admin/categories" exact component={CategoriesList} />
