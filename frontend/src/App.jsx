@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Article from "./components/Article";
+import UserArticlesList from "./components/UserArticlesList";
 import ArticleForm from "./components/ArticleForm";
 import ArticlesList from "./components/ArticlesList";
 import CategoryForm from "./components/CategoryForm";
@@ -34,6 +35,7 @@ const App = () => {
               <Home articles={articles} />
             </Route>
             <Route path="/:slug" exact component={Article} />
+            <Route path="/category/:slug" exact component={UserArticlesList} />
             <Route path="/admin/articles/new" component={ArticleForm} />
             <Route path="/admin/articles" exact component={ArticlesList} />
             <Route path="/admin/categories" exact component={CategoriesList} />

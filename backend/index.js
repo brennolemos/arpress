@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
       ]
    }).then(articles => {
       Category.findAll().then(categories => {
-         res.send({articles, categories})
+         res.send({ articles, categories })
       })
    })
 });
@@ -48,8 +48,20 @@ app.get("/:slug", (req, res) => {
       }
    }).then(article => {
       Category.findAll().then(categories => {
-         res.send({article, categories})
+         res.send({ article, categories })
       })
+   })
+});
+
+app.get("/category/:slug", (req, res) => {
+   const slug = req.params.slug;
+   Category.findOne({
+      where: {
+         slug
+      },
+      include: [{model: Article}]
+   }).then(category => {
+      res.send(category.articles)
    })
 })
 
