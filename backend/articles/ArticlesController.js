@@ -50,6 +50,21 @@ router.post("/articles/save", (req, res) => {
    }).then(() => {
       res.send({ message: "Artigo cadastrado com sucesso!" });
    })
-})
+});
+
+router.get("/admin/articles/edit/:id", (req, res) => {
+   const id = req.params.id;
+   Article.findByPk(id).then(article => {
+      if (article != undefined) {
+         Category.findAll().then(categories => {
+            res.send({ article, categories });
+         })
+      } else {
+         res.send("Artigo não encontrado!");
+      }
+   }).catch(err => {
+      res.send(err);
+   })
+});
 
 module.exports = router;

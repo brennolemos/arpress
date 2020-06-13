@@ -13,7 +13,7 @@ const UserArticlesList = (props) => {
   });
   return (
     <>
-      {articles &&
+      {articles.length ? (
         articles.map((article) => (
           <div className="card my-3" key={article.id}>
             <div className="card-header">
@@ -25,7 +25,10 @@ const UserArticlesList = (props) => {
               </Link>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <h3 className="text-center my-4">Não há artigos nessa categoria!</h3>
+      )}
     </>
   );
 };

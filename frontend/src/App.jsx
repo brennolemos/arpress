@@ -11,6 +11,7 @@ import CategoriesList from "./components/CategoriesList";
 import EditForm from "./components/EditForm";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import EditArticle from "./components/EditArticle";
 
 const App = () => {
   const [articles, setArticles] = useState([]);
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/:slug" exact component={Article} />
             <Route path="/category/:slug" exact component={UserArticlesList} />
             <Route path="/admin/articles/new" component={ArticleForm} />
+            <Route path="/admin/articles/edit/:id" component={EditArticle} />
             <Route path="/admin/articles" exact component={ArticlesList} />
             <Route path="/admin/categories" exact component={CategoriesList} />
             <Route path="/admin/categories/new" component={CategoryForm} />
