@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const Home = () => {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8080")
-      .then((res) => res.json())
-      .then((response) => setArticles(response));
-  }, []);
-
+const Home = ({ articles }) => {
   return (
     <>
       {articles &&
@@ -19,7 +11,9 @@ const Home = () => {
               <h2>{article.title}</h2>
             </div>
             <div className="card-body">
-               <Link to={`/${article.slug}`} className="btn btn-success">Ler Mais</Link>
+              <Link to={`/${article.slug}`} className="btn btn-success">
+                Ler Mais
+              </Link>
             </div>
           </div>
         ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -12,13 +12,27 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
 const App = () => {
+  const [articles, setArticles] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080")
+      .then((res) => res.json())
+      .then((response) => {
+        setArticles(response.articles);
+        setCategories(response.categories);
+      });
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+        <Header logged={false} categories={categories} />
         <div className="container">
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact>
+              <Home articles={articles} />
+            </Route>
             <Route path="/:slug" exact component={Article} />
             <Route path="/admin/articles/new" component={ArticleForm} />
             <Route path="/admin/articles" exact component={ArticlesList} />

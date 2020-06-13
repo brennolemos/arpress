@@ -8,7 +8,7 @@ const Article = (props) => {
   useEffect(() => {
     fetch(`http://localhost:8080/${slug}`)
       .then((res) => res.json())
-      .then((response) => setArticle(response));
+      .then((response) => setArticle(response.article));
   });
 
   return (

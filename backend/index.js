@@ -34,7 +34,9 @@ app.get("/", (req, res) => {
          ['id', 'DESC']
       ]
    }).then(articles => {
-      res.send(articles)
+      Category.findAll().then(categories => {
+         res.send({articles, categories})
+      })
    })
 });
 
@@ -45,7 +47,9 @@ app.get("/:slug", (req, res) => {
          slug
       }
    }).then(article => {
-      res.send(article)
+      Category.findAll().then(categories => {
+         res.send({article, categories})
+      })
    })
 })
 
