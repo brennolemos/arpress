@@ -3,8 +3,14 @@ import { Editor } from "@tinymce/tinymce-react";
 
 const EditArticle = (props) => {
   const id = props.match.params.id;
+
   const [categories, setCategories] = useState([]);
-  const [article, setArticle] = useState(null);
+  const [message, setMessage] = useState("");
+  const [article, setArticle] = useState({
+    title: "",
+    body: "",
+    categoryId: null,
+  });
 
   useEffect(() => {
     fetch(`http://localhost:8080/admin/articles/edit/${id}`)
@@ -14,14 +20,42 @@ const EditArticle = (props) => {
         setArticle(response.article);
       });
   }, []);
-  
+
   const handleEditor = (content, editor) => {
-    console.log(content);
+    setArticle({
+      body: content,
+    });
   };
+
+  function handleChange(event) {
+    setArticle({
+      ...article,
+      [event.target.id]: event.target.value,
+    });
+  }
+
+  //   function handleForm(event) {
+  //     event.preventDefault();
+  //     fetch("http://localhost:8080/categories/save", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(form),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((response) => {
+  //         setMessage(response.message);
+  //       });
+  //   }
 
   return (
     <div className="row my-3">
       <div className="col-md-12">
+        {message && (
+          <div className="alert alert-success">
+            <h4 className="alert-heading">{message}</h4>
+          </div>
+        )}
+
         <div className="card">
           <div className="card-header">
             <h2>Editar Artigo</h2>
@@ -31,8 +65,10 @@ const EditArticle = (props) => {
               <div className="form-group">
                 <input
                   type="text"
+                  id="title"
                   name="title"
                   value={article && article.title}
+                  onChange={handleChange}
                   placeholder="Defina o título do Artigo"
                   className="form-control"
                 />
@@ -59,14 +95,22 @@ const EditArticle = (props) => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="category">Categoria</label>
-                <select name="category" id="category" className="form-control">
+                <label htmlFor="categoryId">Categoria</label>
+                <select
+                  name="categoryId"
+                  id="categoryId"
+                  className="form-control"
+                  onChange={handleChange}
+                  value={article.categoryId}
+                >
                   {categories &&
-                    categories.map((category) => (
-                      <option key={category.id} value={category.id}>
-                        {category.title}
-                      </option>
-                    ))}
+                    categories.map((category) => {
+                      return (
+                        <option key={category.id} value={category.id}>
+                          {category.title}
+                        </option>
+                      );
+                    })}
                 </select>
               </div>
               <button className="btn btn-success">Atualizar</button>
