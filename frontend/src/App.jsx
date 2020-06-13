@@ -14,14 +14,12 @@ import "./App.css";
 import EditArticle from "./components/EditArticle";
 
 const App = () => {
-  const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8080")
       .then((res) => res.json())
       .then((response) => {
-        setArticles(response.articles);
         setCategories(response.categories);
       });
   }, []);
@@ -33,7 +31,7 @@ const App = () => {
         <div className="container">
           <Switch>
             <Route path="/" exact>
-              <Home articles={articles} />
+              <Home />
             </Route>
             <Route path="/:slug" exact component={Article} />
             <Route path="/category/:slug" exact component={UserArticlesList} />

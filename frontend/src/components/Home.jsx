@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Home = ({ articles }) => {
+const Home = () => {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080")
+      .then((res) => res.json())
+      .then((response) => {
+        setArticles(response.articles);
+      });
+  }, []);
+
   return (
     <>
       {articles &&

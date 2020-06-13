@@ -7,9 +7,10 @@ const EditArticle = (props) => {
   const [categories, setCategories] = useState([]);
   const [message, setMessage] = useState("");
   const [article, setArticle] = useState({
+    id: "",
     title: "",
     body: "",
-    categoryId: null,
+    categoryId: "",
   });
 
   useEffect(() => {
@@ -34,18 +35,18 @@ const EditArticle = (props) => {
     });
   }
 
-  //   function handleForm(event) {
-  //     event.preventDefault();
-  //     fetch("http://localhost:8080/categories/save", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(form),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((response) => {
-  //         setMessage(response.message);
-  //       });
-  //   }
+  function handleForm(event) {
+    event.preventDefault();
+    fetch("http://localhost:8080/articles/update", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(article),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        setMessage(response.message);
+      });
+  }
 
   return (
     <div className="row my-3">
@@ -61,7 +62,18 @@ const EditArticle = (props) => {
             <h2>Editar Artigo</h2>
           </div>
           <div className="card-body">
-            <form action="http://localhost:8080/articles/save" method="post">
+            <form
+              onSubmit={handleForm}
+              action="http://localhost:8080/articles/update"
+              method="post"
+            >
+              <input
+                type="hidden"
+                id="id"
+                value={article && article.id}
+                onChange={handleChange}
+                name="id"
+              />
               <div className="form-group">
                 <input
                   type="text"

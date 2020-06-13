@@ -10,7 +10,7 @@ const UserArticlesList = (props) => {
     fetch(`http://localhost:8080/category/${slug}`)
       .then((res) => res.json())
       .then((response) => setArticles(response));
-  });
+  }, [slug]);
   return (
     <>
       {articles.length ? (
