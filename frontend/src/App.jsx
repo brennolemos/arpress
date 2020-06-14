@@ -12,6 +12,7 @@ import EditForm from "./components/EditForm";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import EditArticle from "./components/EditArticle";
+import Page from "./components/Page";
 
 const App = () => {
   const [categories, setCategories] = useState([]);
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/" exact>
               <Home />
             </Route>
+            <Route path="/articles/page/:num" exact component={Page} />
             <Route path="/:slug" exact component={Article} />
             <Route path="/category/:slug" exact component={UserArticlesList} />
             <Route path="/admin/articles/new" component={ArticleForm} />

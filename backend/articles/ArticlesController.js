@@ -95,7 +95,10 @@ router.get("/articles/page/:num", (req, res) => {
          next,
          articles
       }
-      res.json(result);
+      Category.findAll().then(categories => {
+         res.send({ result, categories });
+      })
+      // res.json(result);
    });
 });
 
