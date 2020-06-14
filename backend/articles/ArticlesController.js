@@ -78,8 +78,25 @@ router.post("/articles/update", (req, res) => {
          id
       }
    }).then(() => {
-      res.send({message: "Artigo atualizado com sucesso"});
+      res.send({ message: "Artigo atualizado com sucesso" });
    })
+});
+
+router.get("/articles/page/:num", (req, res) => {
+   const page = req.params.num;
+   let offset = isNaN(page) || page == 1 ? 0 : parseInt(page - 1) * 4;
+
+   Article.findAndCountAll({
+      limit: 4,
+      offset: offset
+   }).then(articles => {
+      let next = offset + 4 >= articles.count ? false : true;
+      let result = {
+         next,
+         articles
+      }
+      res.json(result);
+   });
 });
 
 module.exports = router;
