@@ -95,6 +95,7 @@ router.get("/articles/page/:num", (req, res) => {
    }).then(articles => {
       let next = offset + 4 >= articles.count ? false : true;
       let result = {
+         page: parseInt(page),
          next,
          articles
       }

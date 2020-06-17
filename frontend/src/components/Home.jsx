@@ -29,9 +29,9 @@ const Home = () => {
         ))}
 
       <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
+        <ul className="pagination justify-content-center">
           
-          <li class="page-item">
+          <li className="page-item">
             <Link className="page-link" to="/articles/page/2">Next</Link>
           </li>
         </ul>
